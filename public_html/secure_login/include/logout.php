@@ -1,5 +1,5 @@
 <?php
-include_once 'fuctions.php';
+include_once 'functions.php';
 sec_session_start();
 $_SESSION = array();
 

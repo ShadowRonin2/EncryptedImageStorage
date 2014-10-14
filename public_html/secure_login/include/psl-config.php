@@ -1,7 +1,7 @@
 <?php
 define("HOST", "localhost");
 define("USER", "loginuser");
-define("PASSWORD", "c1oudpass42J");
+define("PASSWORD", "examplepassword");
 define("DATABASE", "login");
 
 define("CAN_REGISTER", "any");

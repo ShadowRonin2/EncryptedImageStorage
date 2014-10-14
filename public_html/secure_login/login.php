@@ -24,10 +24,14 @@ else {
 			echo '<p class = "error">Error Logging in!</p>';
 		}
 		?>
-		<form action="include/process_login.php" method="post" name="login_form">
-			Email: <input type="text" name="email"  />
-			Password: <input type="password" name="password" id="password" />
-			<input type="button" name="Login" onclick="formhash(this.form, this.form.password);" />
+		<form action="include/process_login.php" method="post" name="login_form">                      
+            		Email: <input type="text" name="email" />
+            		Password: <input type="password" 
+                             name="password" 
+                             id="password"/>
+			<input type="button" 
+              	   	  	value="Login" 
+                   		onclick="formhash(this.form, this.form.password);" /> 
 		</form>
 		<p>If you don't have a login, please <a href="register.php">register</a></p>
 		<p>If you are done please <a href=include/logout.php>log out</a></p>

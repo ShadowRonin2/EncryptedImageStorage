@@ -1,6 +1,6 @@
 <?php
-include_once 'include/register.inc.php';
-include_once 'include/functions.php';
+include_once 'includes/register.inc.php';
+include_once 'includes/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@ include_once 'include/functions.php';
             </li>
             <li>Your password and confirmation must match exactly</li>
         </ul>
-        <form action="include/register.inc.php" 
+        <form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" 
                 method="post" 
                 name="registration_form">
             Username: <input type='text' 
@@ -48,9 +48,12 @@ include_once 'include/functions.php';
                                      id="confirmpwd" /><br>
             <input type="button" 
                    value="Register" 
-                   onclick="return regformhash(this.form,this.form.username,this.form.email,
-			this.form.password, this.form.confirmpwd);" /> 
+                   onclick="return regformhash(this.form,
+                                   this.form.username,
+                                   this.form.email,
+                                   this.form.password,
+                                   this.form.confirmpwd);" /> 
         </form>
-        <p>Return to the <a href="index.php">login page</a>.</p>
+        <p>Return to the <a href="login.php">login page</a>.</p>
     </body>
 </html>

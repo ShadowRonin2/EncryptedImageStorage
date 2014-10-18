@@ -1,6 +1,9 @@
+Java:
+Included is the java code and a sample image to upload with. You will need to change the ip address that whatever your host ip is.
 
 Installation:
 Have a LAMP server set up.
+Have apache host the main directory.
 Make a mysql database with 2 tables: members, and login_attempts. 
 	members should be as below:
 	CREATE TABLE `db_name`.`members` (

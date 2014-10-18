@@ -4,29 +4,27 @@ $destination=$_SERVER[DOCUMENT_ROOT]."/uploads/" . $_FILES["userfile"]["name"];
 if($_FILES['userfile']['error'] > 0){
     die('An error ocurred when uploading.');
 }
-
-if(!getimagesize($_FILES['userfile']['tmp_name'])){
-    die('Please ensure you are uploading an image.');
-}
+//had to comment out the next section/s because it was not working with java
+//I think the java code is not sending it in a way that 
+//the following code knows is an image/jpeg
+//if(!getimagesize($_FILES['userfile']['tmp_name'])){
+//    die('Please ensure you are uploading an image.');
+//}
 
 // Check filetype
-if($_FILES['userfile']['type'] != 'image/jpeg'){
-    die('Unsupported filetype uploaded.');
-}
+//if($_FILES['userfile']['type'] != 'image/jpeg'){
+//    die('Unsupported filetype uploaded.');
+//}
 
 // Check filesize
 if($_FILES['userfile']['size'] > 500000){
     die('File uploaded exceeds maximum upload size.');
 }
 
+//Commented out to make for easy testing
 // Check if the file exists
-if(file_exists($destination)){
-    die('File with that name already exists.');
-}
-
-//can write
-//if(!is_writable('../uploads/test.jpg') {
-//	die('Cant write to that folder');
+//if(file_exists($destination)){
+//    die('File with that name already exists.');
 //}
 
 // Upload file

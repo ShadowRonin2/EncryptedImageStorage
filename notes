@@ -1,3 +1,5 @@
 apt-get install ....
 php5-mysql
-....
+mod_rewrite: a2enmod rewrite; service apache2 restart
+http://stackoverflow.com/questions/3746912/mod-rewrite-not-working
+

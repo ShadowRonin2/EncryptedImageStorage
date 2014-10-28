@@ -1,4 +1,12 @@
 <?php
+include_once 'login/includes/db_connect.php';
+include_once 'login/includes/functions.php';
+sec_session_start();
+
+if(login_check($mysqli) == false) {
+	die("LOGIN");
+}
+
 $destination=$_SERVER[DOCUMENT_ROOT]."/uploads/" . $_FILES["userfile"]["name"];
 // Check for errors
 if($_FILES['userfile']['error'] > 0){

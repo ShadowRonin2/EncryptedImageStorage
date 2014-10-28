@@ -1,15 +1,8 @@
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.ClientContext;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.ContentBody;
@@ -23,7 +16,7 @@ import org.apache.http.util.EntityUtils;
 
 
 
-public class upLoadFileTest {
+public class restfulTest {
 	/**
 	 * A simple example of uploading a file to the apache server. 
 	 */
@@ -37,26 +30,14 @@ public class upLoadFileTest {
 	    
 	    //login
 	    //HttpPost loginPost = new HttpPost("http://" + ip + "/login/includes/process_login.php");
-	    HttpPost loginPost = new HttpPost("http://" + ip + "/login/login.php");
+	    HttpPost loginPost = new HttpPost("http://" + ip + "/restful/hello.xml");
 	    MultipartEntityBuilder loginBuilder = MultipartEntityBuilder.create();
 	    loginBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-	    ContentBody email = new StringBody("test@example.com");
+	    ContentBody user = new StringBody("foo");
+	    ContentBody pass = new StringBody("bar");
 	    
-	    String password = "6ZaxN2Vzm9NUJT2y";
-	    String salt = "f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef";
-	    byte[] hash = new byte[0];
-	    try {
-	        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-
-	        hash =  digest.digest((password + salt).getBytes("UTF-8"));
-	    } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-	        System.out.println("WE FAILED BOYS");
-	    }
-	    System.out.println(hash.toString());
-	    ContentBody hashedPass = new StringBody(password);
-	    
-	    loginBuilder.addPart("email", email);
-	    loginBuilder.addPart("password", hashedPass);
+	    loginBuilder.addPart("username", user);
+	    loginBuilder.addPart("password", pass);
 	    HttpEntity lgEn = loginBuilder.build();
 	    loginPost.setEntity(lgEn);
 	    
@@ -65,15 +46,10 @@ public class upLoadFileTest {
 	    HttpEntity reEntity = response2.getEntity();
 	    System.out.println(response2.getStatusLine());
 	    if (reEntity != null) {
-	      //System.out.println(EntityUtils.toString(reEntity));
-	    }
-	    //System.out.println(httpContext.toString());
-	    for(Cookie cookie : cookieStore.getCookies()) {
-	    	System.out.println(cookie.getName());
-	    	System.out.println(cookie.getValue());
+	      System.out.println(EntityUtils.toString(reEntity));
 	    }
 	    
-	    
+	    /**
 	    //upload file
 	    HttpPost httppost = new HttpPost("http://"+ip+"/upload.php");
 	    File file = new File("sample.jpeg");
@@ -93,6 +69,7 @@ public class upLoadFileTest {
 	    if (resEntity != null) {
 	      System.out.println(EntityUtils.toString(resEntity));
 	    }
+	    **/
 	    httpclient.close();
 	  }
 	}

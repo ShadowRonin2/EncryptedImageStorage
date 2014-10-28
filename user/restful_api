@@ -1,0 +1,46 @@
+Below is a BASIC outline of the restful api.
+
+URL: /restful/type/method.xml OR .json
+type: GET, PUT, POST, DELETE
+xml/json: response type
+all methods use post which must contain at least: username "username" and password(hashed?)"password"; return "unauthorized" if failed to login
+
+GET/
+  listFile:
+    returns: list of stored files(images)
+  file:
+    input: filename "filename"
+    returns: base63 encoded file, "file not found", "invalid arguments"
+PUT/
+  file:
+    input: file "image"
+  returns: "success" "invalid file type"
+  password:
+    input: new password "newpassword"
+    returns: "invalid password" "success" "invalid arguments"
+POST/
+  file: 
+    input: file "image"
+    returns: "success" "invalid file type" "file already exists" "invalid arguments"
+  user:
+    input: username/password as above
+    returns: "success" "invalid password" "invalid username" "invalid email" "invalid arguments"
+DELETE/
+  file:
+    input: file name "filename"
+    returns: "success" "failure" "invalid arguments"
+  user:
+    input: username/password as above
+    returns:  "success" "failure" "invalid arguments"
+
+
+Example:
+a post with only the user info to the following url=restful/get/hello will return:
+.json: {"code":1,"status":200,"data":"Hello World"}
+
+.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+	<code>1</code>
+	<data>Hello World</data>
+</response>

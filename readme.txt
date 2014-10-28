@@ -1,5 +1,5 @@
-Java:
-Included is the java code and a sample image to upload with. You will need to change the ip address that whatever your host ip is.
+user: includes an outline for the restful api, a sample java program to upload a file, and a sample java program for restful
+
 
 Installation:
 Have a LAMP server set up.

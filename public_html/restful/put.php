@@ -1,23 +1,16 @@
 <?php
 /*
-	PUT
-
 	Input:
-
 		$_GET['format'] = [ json | html | xml ]
 		$_GET['method'] = []
-		$_POST['username'] = "username"
-		$_POST['password'] = "aPassword"
+		$_POST['username']= ""
+		$_POST['password']=""
+
+	Author: Benjamin Wunschel
+	Original code(from a online tutriol) by: Mark Roland
 */
 
 // --- Step 1: Initialize variables and functions
-
-/**
- * Deliver HTTP Response
- * @param string $format The desired HTTP response content type: [json, html, xml]
- * @param string $api_response The desired HTTP response data
- * @return void
- **/
 function deliver_response($format, $api_response){
 
 	// Define HTTP responses
@@ -137,15 +130,20 @@ if( $authentication_required ){
 
 // --- Step 3: Process Request
 
-if(strcasecmp($_GET['method'],'file') == 0){
-	#do something
+if( strcasecmp($_GET['method'],'file') == 0){
+	/*
+	* Input: _FILE['file']
+	* Return: "Success" | "Invalid File Type" | "Invalid Arguments"
+	*/
 }
-if(strcasecmp($_GET['method'],'password') == 0){
-	#do something
+if( strcasecmp($_GET['method'],'password') == 0){
+	/*
+	* Input: _POST['newPassword']
+	* Return: "Invalid Password" | "Success" | "Invalid Arguments"
+	*/
 }
 
 // --- Step 4: Deliver Response
 
-// Return Response to browser
+//return response to client
 deliver_response($_GET['format'], $response);
-

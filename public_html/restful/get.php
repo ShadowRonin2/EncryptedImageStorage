@@ -1,31 +1,16 @@
 <?php
 /*
-	API Demo
-
-	This script provides a RESTful API interface for a web application
-
 	Input:
-
 		$_GET['format'] = [ json | html | xml ]
 		$_GET['method'] = []
+		$_POST['username']= ""
+		$_POST['password']=""
 
-	Output: A formatted HTTP response
-
-	Author: Mark Roland
-
-	History:
-		11/13/2012 - Created
-
+	Author: Benjamin Wunschel
+	Original code(from a online tutriol) by: Mark Roland
 */
 
 // --- Step 1: Initialize variables and functions
-
-/**
- * Deliver HTTP Response
- * @param string $format The desired HTTP response content type: [json, html, xml]
- * @param string $api_response The desired HTTP response data
- * @return void
- **/
 function deliver_response($format, $api_response){
 
 	// Define HTTP responses
@@ -145,24 +130,24 @@ if( $authentication_required ){
 
 // --- Step 3: Process Request
 
-// Method A: Say Hello to the API
 if( strcasecmp($_GET['method'],'hello') == 0){
 	$response['code'] = 1;
 	$response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
 	$response['data'] = 'Hello World';
 }
-
-if( strcasecmp($_GET['method'],'listFile')==0) {
-	//return list of files for user
+if( strcasecmp($_GET['method'],'file') == 0){
+  /*
+  * Input: _Post['filename'] = ""
+  * Returns a base64 encoded file or "Unknown file" if the file cant be found
+  */
 }
-
-if( (strcasecmp($_GET['method'],'file')==0) {
-	//return the file
+if( strcasecmp($_GET['method'],'fileList') == 0){
+  /*
+  * Returns a list of files the user has stored
+  */
 }
 
 // --- Step 4: Deliver Response
 
-// Return Response to browser
+//return response to client
 deliver_response($_GET['format'], $response);
-
-?>

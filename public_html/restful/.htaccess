@@ -1,6 +1,11 @@
-# Turn on the rewrite engine
 Options +FollowSymlinks
 RewriteEngine on
- 
-# Request routing
-RewriteRule ^([a-zA-Z_-]*)\.(html|json|xml)?$   index.php?method=$1&format=$2 [nc,qsa]
+
+RewriteRule GET/([a-zA-Z_-]*)\.(html|json|xml)?$ get.php?method=$1&format=$2 [nc,qsa]
+RewriteRule PUT/([a-zA-Z_-]*)\.(html|json|xml)?$ put.php?method=$1&format=$2 [nc,qsa]
+RewriteRule POST/([a-zA-Z_-]*)\.(html|json|xml)?$ post.php?method=$1&format=$2 [nc,qsa]
+RewriteRule DELETE/([a-zA-Z_-]*)\.(html|json|xml)?$ delete.php?method=$1&format=$2 [nc,qsa]
+
+
+
+

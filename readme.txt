@@ -1,4 +1,4 @@
-user: includes an outline for the restful api, a sample java program to upload a file, and a sample java program for restful
+user: includes an outline for the restful api, a sample java program that uses the api and uploads a file
 
 
 Installation:

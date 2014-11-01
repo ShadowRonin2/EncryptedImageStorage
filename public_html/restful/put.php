@@ -81,6 +81,7 @@ if( strcasecmp($_GET['method'],'file') == 0){
 	* Input: _FILE['file']
 	* Return: "Success" | "Invalid File Type" | "Invalid Arguments"
 	*/
+	uploadFile($_FILES, True);
 }
 if( strcasecmp($_GET['method'],'password') == 0){
 	/*

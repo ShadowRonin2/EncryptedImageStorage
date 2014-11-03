@@ -74,7 +74,7 @@ function uploadFile($file, $overwrite) {
   *
   */
   echo("it worked!");
-  $destination=$_SERVER[DOCUMENT_ROOT]."/uploads/" . $file["name"];
+  $destination=$_SERVER[DOCUMENT_ROOT]."../uploads/" . $file["name"];
   // Check for errors
   if($file['error'] > 0){
       die('An error ocurred when uploading.');
@@ -91,7 +91,7 @@ function uploadFile($file, $overwrite) {
   }
 
   //Check if the file exists
-  if($overwrite == False and file_exists($destination)){
+  if(!$overwrite and file_exists($destination)){
       die('File already exists!');
   }
 

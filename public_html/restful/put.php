@@ -62,7 +62,7 @@ if( $authentication_required ){
 
 	// Return an error response if user fails authentication. This is a very simplistic example
 	// that should be modified for security in a production environment
-	elseif(!login($_POST['username'], $_POST['password'[)){
+	elseif(!login($_POST['username'], $_POST['password'])){
 		$response['code'] = 4;
 		$response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
 		$response['data'] = $api_response_code[ $response['code'] ]['Message'];

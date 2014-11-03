@@ -66,7 +66,7 @@ function login($username, $password) {
   return True;
 }
 
-function uploadFile($_FILES, $overwrite) {
+function uploadFile($file, $overwrite) {
   /**
   * Input: 
   * $overwrite = True | False
@@ -74,9 +74,9 @@ function uploadFile($_FILES, $overwrite) {
   *
   */
   echo("it worked!");
-  $destination=$_SERVER[DOCUMENT_ROOT]."/uploads/" . $_FILES["file"]["name"];
+  $destination=$_SERVER[DOCUMENT_ROOT]."/uploads/" . $file["name"];
   // Check for errors
-  if($_FILES['file']['error'] > 0){
+  if($file['error'] > 0){
       die('An error ocurred when uploading.');
   }
 
@@ -86,7 +86,7 @@ function uploadFile($_FILES, $overwrite) {
   //}
 
   // Check filesize
-  if($_FILES['file']['size'] > 500000){
+  if($file['size'] > 500000){
       die('File uploaded exceeds maximum upload size.');
   }
 
@@ -96,10 +96,10 @@ function uploadFile($_FILES, $overwrite) {
   }
 
   // Upload file
-  if(!move_uploaded_file($_FILES['file']['tmp_name'], $destination)){
+  if(!move_uploaded_file($file['tmp_name'], $destination)){
   
     $html_body = '<h1>File upload error!</h1>';
-    switch ($_FILES[0]['error']) {
+    switch ($file['error']) {
     case 1:
 	$html_body .= 'The file is bigger than this PHP installation allows';
 	break;

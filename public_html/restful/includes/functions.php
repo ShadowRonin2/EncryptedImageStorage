@@ -91,7 +91,7 @@ function uploadFile($file, $overwrite) {
   }
 
   //Check if the file exists
-  if($overwrite==False & file_exists($destination)){
+  if($overwrite == False and file_exists($destination)){
       die('File already exists!');
   }
 

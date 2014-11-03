@@ -10,7 +10,6 @@
 	Original code(from a online tutriol) by: Mark Roland
 */
 include_once 'includes/functions.php';
-include_once 'includes/upload.php';
 // --- Step 1: Initialize variables and functions
 
 // Define whether an HTTPS connection is required

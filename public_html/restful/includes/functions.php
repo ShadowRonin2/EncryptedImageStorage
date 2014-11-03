@@ -74,7 +74,7 @@ function uploadFile($file, $overwrite) {
   *
   */
   echo("it worked!");
-  $destination=$_SERVER[DOCUMENT_ROOT]."../uploads/" . $file["name"];
+  $destination="/var/www/webhost/public_html/uploads/" . $file["name"];
   // Check for errors
   if($file['error'] > 0){
       die('An error ocurred when uploading.');

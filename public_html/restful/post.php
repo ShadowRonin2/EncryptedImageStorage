@@ -10,7 +10,6 @@
 	Original code(from a online tutriol) by: Mark Roland
 */
 include_once 'includes/functions.php';
-include_once 'includes/upload.php';
 // --- Step 1: Initialize variables and functions
 
 // Define whether an HTTPS connection is required
@@ -59,6 +58,14 @@ if( $authentication_required ){
 		deliver_response($_GET['format'], $response);
 
 	}
+	
+	//This has to be before the login, because it is a new user
+	if(strcasecmp($_GET['method'],'user') == 0){
+	  /*
+	  * Returns: "Success" | "Invalid Password" | "Invalid Username" | "Invalid Email" | "Invalid Arguments"
+	  */
+	  register($_POST['username'], $_POST['password']);
+	}
 
 	// Return an error response if user fails authentication. This is a very simplistic example
 	// that should be modified for security in a production environment
@@ -76,18 +83,17 @@ if( $authentication_required ){
 
 // --- Step 3: Process Request
 
+//user is up before login, because the account must be made.
+
 if(strcasecmp($_GET['method'],'file') == 0){
 	/*
 	* Input: _FILE['file']
 	* Returns: "Success" | "Invalid File Type" | "File Already Exists" | "Invalid Arguments"
 	*/
+	uploadFile($_FILES['userfile'], False);
 	
 }
-if(strcasecmp($_GET['method'],'user') == 0){
-	/*
-	* Returns: "Success" | "Invalid Password" | "Invalid Username" | "Invalid Email" | "Invalid Arguments"
-	*/
-}
+
 
 // --- Step 4: Deliver Response
 

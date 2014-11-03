@@ -121,3 +121,11 @@ function uploadFile($file, $overwrite) {
   }
   die('Success');
 }
+
+function register($username, $password) {
+
+}
+
+function changePassword($username, $newPassword) {
+
+}

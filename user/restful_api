@@ -6,6 +6,9 @@ xml/json: response type
 all methods use post which must contain at least: username "username" and password(hashed?)"password"; return "unauthorized" if failed to login
 
 GET/
+  hello:
+    returns: hello
+    just a fully implemented example, will be removed later
   fileList:
     returns: list of stored files(images)
   file:

@@ -91,7 +91,15 @@ if(strcasecmp($_GET['method'],'file') == 0){
 	* Returns: "Success" | "Invalid File Type" | "File Already Exists" | "Invalid Arguments"
 	*/
 	uploadFile($_FILES['userfile'], False);
-	
+	if($result == 'success') {
+	  $response['code'] = 0;
+	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	  $response['data'] = result;
+	} else {
+	  $response['code'] = 1;
+	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	  $response['data'] = 'Hello World';
+	}
 }
 
 

@@ -73,53 +73,32 @@ function uploadFile($file, $overwrite) {
   * $_FILE['file']
   *
   */
-  echo("it worked!");
   $destination="/var/www/webhost/public_html/uploads/" . $file["name"];
   // Check for errors
   if($file['error'] > 0){
-      die('An error ocurred when uploading.');
+      return 'upload error';
   }
 
   // Check filetype
-  //if($_FILES['file']['type'] != 'image/jpeg'){
-  //    die('Unsupported filetype uploaded.');
+  //if($file['type'] != 'image/jpeg'){
+  //    return 'unsupported filetype';
   //}
 
   // Check filesize
   if($file['size'] > 500000){
-      die('File uploaded exceeds maximum upload size.');
+      return 'over max size';
   }
 
   //Check if the file exists
   if(!$overwrite and file_exists($destination)){
-      die('File already exists!');
+      return 'file exists';
   }
 
   // Upload file
   if(!move_uploaded_file($file['tmp_name'], $destination)){
-  
-    $html_body = '<h1>File upload error!</h1>';
-    switch ($file['error']) {
-    case 1:
-	$html_body .= 'The file is bigger than this PHP installation allows';
-	break;
-    case 2:
-	$html_body .= 'The file is bigger than this form allows';
-	break;
-    case 3:
-	$html_body .= 'Only part of the file was uploaded';
-	break;
-    case 4:
-	$html_body .= 'Empty';
-	break;
-    default:
-	$html_body .= 'unknown errror';
-    } 
-    echo ($html_body);	
-
-	  die('Error uploading file - check destination is writeable.');
+      return 'error movinvg file';
   }
-  die('Success');
+  return 'success';
 }
 
 function register($username, $password) {

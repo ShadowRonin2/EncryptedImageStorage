@@ -87,7 +87,16 @@ if( strcasecmp($_GET['method'],'password') == 0){
 	* Input: _POST['newPassword']
 	* Return: "Invalid Password" | "Success" | "Invalid Arguments"
 	*/
-	changePassword($_POST['username'], $_POST['newPassword']);
+	$result = changePassword($_POST['username'], $_POST['newPassword']);
+	if($result == 'success') {
+	  $response['code'] = 0;
+	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	  $response['data'] = result;
+	} else {
+	  $response['code'] = 1;
+	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	  $response['data'] = 'Hello World';
+	}
 }
 
 // --- Step 4: Deliver Response

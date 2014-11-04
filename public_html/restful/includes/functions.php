@@ -66,39 +66,48 @@ function login($username, $password) {
   return True;
 }
 
-function uploadFile($file, $overwrite) {
+function uploadFile($file, $overwrite, $username) {
   /**
   * Input: 
   * $overwrite = True | False
   * $_FILE['file']
   *
   */
-  $destination="/var/www/webhost/public_html/uploads/" . $file["name"];
+  $directory = realpath("/var/www/webhost/public_html/uploads/". $username);
+  $destination= $directory ."/". $file["name"];
+  
+  //check to make sure the directory exists
+  if(!is_dir($directory)) {
+    if(!mkdir($directory)) {
+      die("Failed to make the directory! This should never happen!");
+    }
+  }
+  
   // Check for errors
   if($file['error'] > 0){
-      return 'upload error';
+      return 'Error uploading';
   }
 
   // Check filetype
   //if($file['type'] != 'image/jpeg'){
-  //    return 'unsupported filetype';
+  //    return "Invalid file type";
   //}
 
   // Check filesize
   if($file['size'] > 500000){
-      return 'over max size';
+      return 'File is too large';
   }
 
   //Check if the file exists
   if(!$overwrite and file_exists($destination)){
-      return 'file exists';
+      return "File already exists";
   }
 
   // Upload file
   if(!move_uploaded_file($file['tmp_name'], $destination)){
-      return 'error movinvg file';
+      return 'Error movinvg file';
   }
-  return 'success';
+  return 'Success';
 }
 
 function register($username, $password) {

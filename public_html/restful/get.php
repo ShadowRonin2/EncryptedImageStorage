@@ -90,6 +90,17 @@ if( strcasecmp($_GET['method'],'fileList') == 0){
   /*
   * Returns a list of files the user has stored
   */
+  $directoy = realpath("/var/www/webhost/uploads/" . $_POST['username']);
+  if(!is_dir($directoy)) {
+    if(!mkdir($directory)) {
+      die("Failed to make the directory! This should never happen!");
+    }
+  }
+  
+  $list = scandir($directoy);
+  $response['code'] = 1;
+  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+  $response['data'] = $list;
 }
 
 // --- Step 4: Deliver Response

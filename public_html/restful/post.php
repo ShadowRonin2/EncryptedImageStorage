@@ -83,22 +83,22 @@ if( $authentication_required ){
 
 // --- Step 3: Process Request
 
-//user is up before login, because the account must be made.
+//user is up before login, because the account must be made before it is possible to log in
 
 if(strcasecmp($_GET['method'],'file') == 0){
 	/*
 	* Input: _FILE['file']
-	* Returns: "Success" | "Invalid File Type" | "File Already Exists" | "Invalid Arguments"
+	* Return: "Success" | "Invalid file type" | "Error movinvg file" | "File is too large" | "Error uploading" | "File already exists"
 	*/
-	uploadFile($_FILES['userfile'], False);
-	if($result == 'success') {
+	uploadFile($_FILES['userfile'], False, $_POST['username']);
+	if($result == 'Success') {
 	  $response['code'] = 0;
 	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
-	  $response['data'] = result;
+	  $response['data'] = 'Success';
 	} else {
 	  $response['code'] = 1;
 	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
-	  $response['data'] = 'Hello World';
+	  $response['data'] = $result;
 	}
 }
 

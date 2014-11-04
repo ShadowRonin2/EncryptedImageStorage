@@ -16,22 +16,23 @@ GET/
     returns: base63 encoded file, "file not found", "invalid arguments"
 PUT/
   file:
-    input: file "image"
-    returns: "success" "invalid file type"
+    * Input: _FILE['file']
+    * Return: "Success" | "Invalid file type" | "Error movinvg file" | "File is too large" | "Error uploading"
   password:
     input: new password "newpassword"
     returns: "invalid password" "success" "invalid arguments"
 POST/
   file: 
-    input: file "image"
-    returns: "success" "invalid file type" "file already exists" "invalid arguments"
+    * Input: _FILE['file']
+    * Return: "Success" | "Invalid file type" | "Error movinvg file" | "File is too large" | "Error uploading" | "File already exists"
   user:
     input: username/password as above
     returns: "success" "invalid password" "invalid username" "invalid email" "invalid arguments"
 DELETE/
   file:
-    input: file name "filename"
-    returns: "success" "failure" "invalid arguments"
+    * Input: _POST['filename'] = ""
+    * Deletes the file given by file name
+    * Returns 'Success' | 'File does not exist' | 'The file could not be removed'
   user:
     input: username/password as above
     returns:  "success" "failure" "invalid arguments"

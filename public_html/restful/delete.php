@@ -79,8 +79,24 @@ if( strcasecmp($_GET['method'],'file') == 0){
     /*
     * Input: _POST['filename'] = ""
     * Deletes the file given by file name
-    * Returns "Unknown File" if it cant find the file
+    * Returns 'Success' | 'File does not exist' | 'The file could not be removed'
     */
+    $destination = realpath("/var/www/webhost/public_html/uploads/". $_POST['username'] . "/" . $_POST['filename']);
+    if(!is_file($destination) {
+      $response['code'] = 0;
+      $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+      $response['data'] = 'File does not exist';
+    } else {
+      if(unlink($destination)){
+	$response['code'] = 1;
+	$response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	$response['data'] = 'Success';
+      } else {
+	$response['code'] = 0;
+	$response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	$response['data'] = 'The file could not be removed';
+      }
+    }
 }
 if( strcasecmp($_GET['method'],'user') == 0){
     /*

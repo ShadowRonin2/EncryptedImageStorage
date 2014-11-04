@@ -78,9 +78,18 @@ if( $authentication_required ){
 if( strcasecmp($_GET['method'],'file') == 0){
 	/*
 	* Input: _FILE['file']
-	* Return: "Success" | "Invalid File Type" | "Invalid Arguments"
+	* Return: "Success" | "Invalid file type" | "Error movinvg file" | "File is too large" | "Error uploading"
 	*/
-	uploadFile($_FILES['userfile'], True);
+	uploadFile($_FILES['userfile'], True, $_POST['username']);
+	if($result == 'Success') {
+	  $response['code'] = 0;
+	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	  $response['data'] = 'Success';
+	} else {
+	  $response['code'] = 1;
+	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	  $response['data'] = $result;
+	}
 }
 if( strcasecmp($_GET['method'],'password') == 0){
 	/*
@@ -88,15 +97,7 @@ if( strcasecmp($_GET['method'],'password') == 0){
 	* Return: "Invalid Password" | "Success" | "Invalid Arguments"
 	*/
 	$result = changePassword($_POST['username'], $_POST['newPassword']);
-	if($result == 'success') {
-	  $response['code'] = 0;
-	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
-	  $response['data'] = result;
-	} else {
-	  $response['code'] = 1;
-	  $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
-	  $response['data'] = 'Hello World';
-	}
+	
 }
 
 // --- Step 4: Deliver Response

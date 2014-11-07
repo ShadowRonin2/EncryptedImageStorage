@@ -73,11 +73,11 @@ function uploadFile($file, $overwrite, $username) {
   * $_FILE['file']
   *
   */
-  echo($username);
   $directory = realpath("/var/www/webhost/public_html/uploads/". $username);
   $destination= $directory ."/". $file["name"];
   
   //check to make sure the directory exists
+  echo(is_dir("/var/www/webhost/public_html/uploads/");
   if(!is_dir($directory)) {
     if(!mkdir($directory)) {
       die("Failed to make the directory! This should never happen!");

@@ -78,7 +78,7 @@ function uploadFile($file, $overwrite, $username) {
   $destination= $directory ."/". $file["name"];
   
   //check to make sure the directory exists
-  echo("what" . is_dir($directory));
+  echo(is_dir($directory));
   if(!is_dir($directory)) {
     if(!mkdir($directory)) {
       die("Failed to make the directory! This should never happen!");

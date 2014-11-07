@@ -82,7 +82,7 @@ if( strcasecmp($_GET['method'],'file') == 0){
     * Returns 'Success' | 'File does not exist' | 'The file could not be removed'
     */
     $destination = realpath("/var/www/webhost/public_html/uploads/". $_POST['username'] . "/" . $_POST['filename']);
-    if(!is_file($destination) {
+    if(!is_file($destination)) {
       $response['code'] = 0;
       $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
       $response['data'] = 'File does not exist';
@@ -93,7 +93,7 @@ if( strcasecmp($_GET['method'],'file') == 0){
 	$response['data'] = 'Success';
       } else {
 	$response['code'] = 0;
-	$response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+	$response['status'] = $api_response_code[$response['code']]['HTTP Response'];
 	$response['data'] = 'The file could not be removed';
       }
     }

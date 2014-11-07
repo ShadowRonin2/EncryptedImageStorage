@@ -74,6 +74,7 @@ function uploadFile($file, $overwrite, $username) {
   *
   */
   $directory = "/var/www/webhost/public_html/uploads/". $username;
+  echo($directory);
   $destination= $directory ."/". $file["name"];
   
   //check to make sure the directory exists

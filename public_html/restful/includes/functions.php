@@ -73,7 +73,7 @@ function uploadFile($file, $overwrite, $username) {
   * $_FILE['file']
   *
   */
-  $directory = realpath("/var/www/webhost/public_html/uploads/". $username);
+  $directory = "/var/www/webhost/public_html/uploads/". $username;
   $destination= $directory ."/". $file["name"];
   
   //check to make sure the directory exists

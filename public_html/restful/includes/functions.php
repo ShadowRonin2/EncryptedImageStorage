@@ -136,6 +136,7 @@ function changePassword($username, $newPassword) {
   //$stmt->execute(); 
   //$stmt->store_result();
   
+  return True;
 }
 
 function hashPass($password) {

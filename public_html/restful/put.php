@@ -96,7 +96,7 @@ if( strcasecmp($_GET['method'],'password') == 0){
 	* Input: _POST['newPassword']
 	* Return: "Invalid Password" | "Success" | "Invalid Arguments"
 	*/
-	$result = changePassword($_POST['username'], $_POST['newPassword']);
+	changePassword($_POST['username'], $_POST['newPassword']);
 	
 }
 

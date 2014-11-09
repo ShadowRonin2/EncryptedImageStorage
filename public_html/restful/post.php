@@ -62,6 +62,7 @@ if( $authentication_required ){
 	//This has to be before the login, because it is a new user
 	if(strcasecmp($_GET['method'],'user') == 0){
 	  /*
+	  * _POST['email] & ['username'] & ['password']
 	  * Returns: "Success" | "Invalid Password" | "Invalid Username" | "Invalid Email" | "Invalid Arguments"
 	  */
 	  register($_POST['username'], $_POST['password']);

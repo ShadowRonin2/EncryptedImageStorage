@@ -1,4 +1,5 @@
 <?php
+include_once sha512.js;
 function deliver_response($format, $api_response){
 	/**
 	* Delivers the response to the client
@@ -117,5 +118,15 @@ function register($username, $password) {
 }
 
 function changePassword($username, $newPassword) {
+  $password = hashPass($newPassword);
+  echo($password);
+  #$stmt = $mysqli->prepare("UPDATE members SET password = ? WHERE username = ?");
+  #$stmt->bind_param($password, $username);
+  #$stmt->execute(); 
+  #$stmt->store_result();
+  
+}
 
+function hashPass($password) {
+  return hex_sha512($password);
 }

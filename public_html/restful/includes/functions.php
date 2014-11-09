@@ -130,10 +130,10 @@ function changePassword($username, $newPassword) {
         echo($password);
   }
   //$password = hashPass($newPassword);
-  #$stmt = $mysqli->prepare("UPDATE members SET password = ? WHERE username = ?");
-  #$stmt->bind_param($password, $username);
-  #$stmt->execute(); 
-  #$stmt->store_result();
+  //$stmt = $mysqli->prepare("UPDATE members SET password = ? WHERE username = ?");
+  //$stmt->bind_param($password, $username);
+  //$stmt->execute(); 
+  //$stmt->store_result();
   
 }
 

@@ -1,5 +1,6 @@
 <?php
 //include_once includes/sha512.js;
+include_once includes/psl-config.php;
 function deliver_response($format, $api_response){
 	/**
 	* Delivers the response to the client

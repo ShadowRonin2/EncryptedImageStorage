@@ -120,6 +120,7 @@ function register($username, $password) {
 }
 
 function changePassword($username, $newPassword) {
+  $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
   if ($stmt = $mysqli->prepare("SELECT id, email, password, salt FROM members WHERE username = ? LIMIT 1")) {
         $stmt->bind_param('s', $username);
         $stmt->execute();   

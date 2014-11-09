@@ -118,8 +118,18 @@ function register($username, $password) {
 }
 
 function changePassword($username, $newPassword) {
-  $password = hashPass($newPassword);
-  echo($password);
+  if ($stmt = $mysqli->prepare("SELECT id, email, password, salt FROM members WHERE username = ? LIMIT 1")) {
+        $stmt->bind_param('s', $username);
+        $stmt->execute();   
+        $stmt->store_result();
+        $stmt->bind_result($user_id, $email, $db_password, $salt);
+        $stmt->fetch();
+ 
+        // hash the password with the unique salt.
+        $password = hash('sha512', $newPassword . $salt);
+        echo($password);
+  }
+  //$password = hashPass($newPassword);
   #$stmt = $mysqli->prepare("UPDATE members SET password = ? WHERE username = ?");
   #$stmt->bind_param($password, $username);
   #$stmt->execute(); 

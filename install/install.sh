@@ -1,16 +1,19 @@
 #! bin/bash
 install_location = '/var/www'
 
-mysql_database_name = "IronCloud"
-mysql_admin_user = "root"
-mysql_admin_pass = "password"
-mysql_server_user = "serverUser"
-mysql_server_password = $(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+mysql_database_name="IronCloud"
+mysql_admin_user="root"
+mysql_admin_pass="password"
+mysql_server_user="serverUser"
+mysql_server_password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 echo "Installing dependencies"
 apt-get update
 apt-get install lamp-server^ phpmyadmin -y
 apt-get install apache2 -y
+
+echo mysql-server mysql-server/root_password password $mysql_admin_pass | sudo debconf-set-selections
+echo mysql-server mysql-server/root_password_again password $mysql_admin_pass | sudo debconf-set-selections
 apt-get install mysql -y
 apt-get install php5-mysql -y
 apt-get install mod_rewrite -y
@@ -19,11 +22,11 @@ service apache2 restart
 echo ""
 
 echo "Decompressing package"
-tar -xzv IronCoud.tar -C $install_location
+tar -xfv IronCoud.tar -C $install_location
 
 echo "Setting up mysql"
 #configure apache & make mysql tables
-temp = "CREATE DATABASE "$mysql_database_name";"
+temp = "CREATE DATABASE $mysql_database_name;"
 mysql -u $mysql_admin_user -p $mysql_admin_pass -e $temp
 temp = "CREATE TABLE `members` (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `username` VARCHAR(30) NOT NULL, `email` VARCHAR(50) NOT NULL,`password` CHAR(128) NOT NULL,`salt` CHAR(128) NOT NULL) ENGINE = InnoDB;"
 mysql -u $mysql_admin_user -p $mysql_admin_pass -D $mysql_database_name -e $temp

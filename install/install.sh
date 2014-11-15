@@ -9,12 +9,10 @@ mysql_server_password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | hea
 
 echo "Installing dependencies"
 apt-get update
-apt-get install lamp-server^ phpmyadmin -y
-apt-get install apache2 -y
-
 echo mysql-server mysql-server/root_password password $mysql_admin_pass | sudo debconf-set-selections
 echo mysql-server mysql-server/root_password_again password $mysql_admin_pass | sudo debconf-set-selections
-apt-get install mysql -y
+apt-get install lamp-server^ phpmyadmin -y
+
 apt-get install php5-mysql -y
 apt-get install mod_rewrite -y
 a2enmod rewrite

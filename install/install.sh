@@ -1,6 +1,6 @@
-#! bin/bash
-install_location = '/var/www'
+#! /bin/bash
 
+install_location='/var/www'
 mysql_database_name="IronCloud"
 mysql_admin_user="root"
 mysql_admin_pass="password"

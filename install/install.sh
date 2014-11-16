@@ -1,21 +1,21 @@
 #! /bin/bash
 
-function apache-config {
+function apache-config() {
   cp apache2.conf /etc/apache2/apache2.conf
   sed "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
 }
 
-function IronCloud-config {
-  echo "<?php" > $install_location"/private_html/includes/psl-config.php"
-  echo "define("HOST", "localhost");" >> $install_location"/private_html/includes/psl-config.php"
-  echo "define("USER", "loginuser");" >> $install_location"/private_html/includes/psl-config.php"
-  echo "define("PASSWORD", "examplepassword");" >> $install_location"/private_html/includes/psl-config.php"
-  echo "define("DATABASE", "login");" >> $install_location"/private_html/includes/psl-config.php"
-  echo  "" >> $install_location"/private_html/includes/psl-config.php"
-  echo "define("CAN_REGISTER", "any");" >> $install_location"/private_html/includes/psl-config.php"
-  echo "define("DEFAULT_ROLE", "member");" >> $install_location"/private_html/includes/psl-config.php"
-  echo "" >> $install_location"/private_html/includes/psl-config.php"
-  echo "define("SECURE", FALSE);" >> $install_location"/private_html/includes/psl-config.php"
+function IronCloud-config() {
+  echo "<?php" > $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "define("HOST", "localhost");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "define("USER", "loginuser");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "define("PASSWORD", "examplepassword");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "define("DATABASE", "login");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo  "" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "define("CAN_REGISTER", "any");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "define("DEFAULT_ROLE", "member");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "" >> $inst1all_location"/IronCloud/private_html/includes/psl-config.php"
+  echo "define("SECURE", FALSE);" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
 
 }
 

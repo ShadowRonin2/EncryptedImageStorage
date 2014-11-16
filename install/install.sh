@@ -7,6 +7,8 @@ mysql_admin_pass="password"
 mysql_server_user="serverUser"
 mysql_server_password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
+:<<'END'
+
 echo "Installing dependencies"
 apt-get update
 echo mysql-server mysql-server/root_password password $mysql_admin_pass | sudo debconf-set-selections
@@ -24,12 +26,13 @@ echo ""
 echo "Decompressing package"
 tar -xv -f "IronCloud.tar" -C $install_location
 
+END
 echo "Setting up mysql"
 #configure apache & make mysql tables
 temp="CREATE DATABASE $mysql_database_name;"
-mysql -u $mysql_admin_user -p $mysql_admin_pass -e $temp
+mysql --user=$mysql_admin_user --password=$mysql_admin_pass -e $temp
 temp="CREATE TABLE \`members\` (\`id\` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, \`username\` VARCHAR(30) NOT NULL, \`email\` VARCHAR(50) NOT NULL,\`password\` CHAR(128) NOT NULL,\`salt\` CHAR(128) NOT NULL) ENGINE = InnoDB;"
-mysql -u $mysql_admin_user -p $mysql_admin_pass -D $mysql_database_name -e $temp
+mysql --user=$mysql_admin_user --password=$mysql_admin_pass -D $mysql_database_name -e $temp
 
 echo "Configureing server"
 rm /etc/apache2/apache2.conf

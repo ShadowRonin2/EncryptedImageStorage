@@ -37,7 +37,7 @@ cp apache2.conf /etc/apache2/apache2.conf
 sed -n "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
 
 rm "/var/www/IronCloud/public_html/psl-config.php"
-touch "/IronCloud/public_html/includes/psl-config.php"
+touch "$inst1all_location/IronCloud/public_html/includes/psl-config.php"
 echo '<?php' > $install_location"/IronCloud/public_html/includes/psl-config.php"
 echo "define("HOST", "localhost");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
 echo "define("USER", "loginuser");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"

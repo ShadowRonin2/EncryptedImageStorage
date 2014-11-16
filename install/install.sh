@@ -36,7 +36,7 @@ rm /etc/apache2/apache2.conf
 cp apache2.conf /etc/apache2/apache2.conf
 sed -n "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
 
-if [ ! -e "/IronCloud/public_html/includes/psl-config.php"]; then
+if [ ! -e "/IronCloud/public_html/includes/psl-config.php" ]; then
   touch "/IronCloud/public_html/includes/psl-config.php"
 fi
 echo '<?php' > $install_location"/IronCloud/public_html/includes/psl-config.php"

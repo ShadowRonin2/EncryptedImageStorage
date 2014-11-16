@@ -36,8 +36,8 @@ rm /etc/apache2/apache2.conf
 cp apache2.conf /etc/apache2/apache2.conf
 sed -n "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
 
-rm "/var/www/IronCloud/public_html/psl-config.php"
-touch "$inst1all_location/IronCloud/public_html/includes/psl-config.php"
+rm "$install_location//public_html/psl-config.php"
+touch "$install_location/IronCloud/public_html/includes/psl-config.php"
 echo '<?php' > $install_location"/IronCloud/public_html/includes/psl-config.php"
 echo "define("HOST", "localhost");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
 echo "define("USER", "loginuser");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
@@ -46,7 +46,7 @@ echo "define("DATABASE", "login");" >> $install_location"/IronCloud/public_html/
 echo  "" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
 echo "define("CAN_REGISTER", "any");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
 echo "define("DEFAULT_ROLE", "member");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
-echo "" >> $inst1all_location"/IronCloud/public_html/includes/psl-config.php"
+echo "" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
 echo "define("SECURE", FALSE);" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
 
 

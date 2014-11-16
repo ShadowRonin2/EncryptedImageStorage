@@ -30,9 +30,9 @@ END
 echo "Setting up mysql"
 #configure apache & make mysql tables
 temp="CREATE DATABASE $mysql_database_name;"
-mysql --user=$mysql_admin_user --password=$mysql_admin_pass -e $temp
+mysql --user="$mysql_admin_user" --password="$mysql_admin_pass" -e "$temp"
 temp="CREATE TABLE \`members\` (\`id\` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, \`username\` VARCHAR(30) NOT NULL, \`email\` VARCHAR(50) NOT NULL,\`password\` CHAR(128) NOT NULL,\`salt\` CHAR(128) NOT NULL) ENGINE = InnoDB;"
-mysql --user=$mysql_admin_user --password=$mysql_admin_pass -D $mysql_database_name -e $temp
+mysql --user="$mysql_admin_user" --password="$mysql_admin_pass" -D "$mysql_database_name" -e "$temp"
 
 echo "Configureing server"
 rm /etc/apache2/apache2.conf

@@ -1,2 +1,11 @@
+Options +FollowSymlinks
 RewriteEngine on
-RewriteRule ^oranges.html$ apples.html
+
+RewriteRule GET/([a-zA-Z_-]*)\.(html|json|xml)?$ get.php?method=$1&format=$2 [nc,qsa]
+RewriteRule PUT/([a-zA-Z_-]*)\.(html|json|xml)?$ put.php?method=$1&format=$2 [nc,qsa]
+RewriteRule POST/([a-zA-Z_-]*)\.(html|json|xml)?$ post.php?method=$1&format=$2 [nc,qsa]
+RewriteRule DELETE/([a-zA-Z_-]*)\.(html|json|xml)?$ delete.php?method=$1&format=$2 [nc,qsa]
+
+
+
+

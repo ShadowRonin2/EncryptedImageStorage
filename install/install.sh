@@ -1,21 +1,22 @@
 #! /bin/bash
 
 function apache-config() {
+  rm /etc/apache2/apache2.conf
   cp apache2.conf /etc/apache2/apache2.conf
-  sed "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
+  sed -n "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
 }
 
 function IronCloud-config() {
-  echo "<?php" > $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "define("HOST", "localhost");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "define("USER", "loginuser");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "define("PASSWORD", "examplepassword");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "define("DATABASE", "login");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo  "" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "define("CAN_REGISTER", "any");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "define("DEFAULT_ROLE", "member");" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "" >> $inst1all_location"/IronCloud/private_html/includes/psl-config.php"
-  echo "define("SECURE", FALSE);" >> $install_location"/IronCloud/private_html/includes/psl-config.php"
+  echo '<?php' > $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "define("HOST", "localhost");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "define("USER", "loginuser");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "define("PASSWORD", "examplepassword");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "define("DATABASE", "login");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo  "" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "define("CAN_REGISTER", "any");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "define("DEFAULT_ROLE", "member");" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "" >> $inst1all_location"/IronCloud/public_html/includes/psl-config.php"
+  echo "define("SECURE", FALSE);" >> $install_location"/IronCloud/public_html/includes/psl-config.php"
 
 }
 
@@ -41,7 +42,7 @@ service apache2 restart
 echo ""
 
 echo "Decompressing package"
-tar -xfv IronCloud.tar -C $install_location
+tar -xv -f "IronCloud.tar" -C $install_location
 
 echo "Setting up mysql"
 #configure apache & make mysql tables

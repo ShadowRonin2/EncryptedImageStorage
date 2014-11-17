@@ -39,6 +39,15 @@ rm /etc/apache2/apache2.conf
 cp apache2.conf /etc/apache2/apache2.conf
 sed -i "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
 
+rm /etc/apache2/sites-available/IronCloud.conf
+rm /etc/apache2/sites-enabled/IronCloud.conf
+rm /etc/apache2/sites-available/000-default.conf
+rm /etc/apache2/sites-enabled/000-default.conf
+cp IronCloud.conf /etc/apache2/sites-enabled/IronCloud.conf
+cp IronCloud.conf /etc/apache2/sites-available/IronCloud.conf
+sed -i "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/sites-available/IronCloud.conf
+sed -i "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/sites-enabled/IronCloud.conf
+
 rm "$install_location/IronCloud/psl-config.php"
 touch "$install_location/IronCloud/public_html/includes/psl-config.php"
 echo '<?php' > $install_location"/IronCloud/public_html/includes/psl-config.php"

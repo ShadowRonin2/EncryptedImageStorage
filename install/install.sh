@@ -37,7 +37,7 @@ mysql --user="$mysql_admin_user" --password="$mysql_admin_pass" -D "$mysql_datab
 echo "Configureing server"
 rm /etc/apache2/apache2.conf
 cp apache2.conf /etc/apache2/apache2.conf
-sed -n -i "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
+sed -i "s|IRONCLOUDDES|$install_location/IronCloud/public_html|g" /etc/apache2/apache2.conf
 
 rm "$install_location/IronCloud/psl-config.php"
 touch "$install_location/IronCloud/public_html/includes/psl-config.php"

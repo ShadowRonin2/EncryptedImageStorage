@@ -7,8 +7,6 @@ mysql_admin_pass="password"
 mysql_server_user="serverUser"
 mysql_server_password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
-
-: << "END"
 echo "Installing dependencies"
 apt-get update
 echo mysql-server mysql-server/root_password password $mysql_admin_pass | sudo debconf-set-selections
@@ -22,7 +20,7 @@ apt-get install mod_rewrite -y
 a2enmod rewrite
 service apache2 restart
 echo ""
-END
+
 echo "Decompressing package"
 tar -x -f "IronCloud.tar" -C $install_location
 

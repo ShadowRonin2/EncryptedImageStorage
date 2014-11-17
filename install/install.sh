@@ -54,3 +54,4 @@ echo "define("SECURE", FALSE);" >> $install_location"/IronCloud/public_html/incl
 
 
 echo "Cleaning up"
+service apache2 restart

@@ -7,7 +7,7 @@ mysql_admin_pass="password"
 mysql_server_user="serverUser"
 mysql_server_password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
-:<<'END'
+
 
 echo "Installing dependencies"
 apt-get update
@@ -26,7 +26,7 @@ echo ""
 echo "Decompressing package"
 tar -xv -f "IronCloud.tar" -C $install_location
 
-END
+
 echo "Setting up mysql"
 #configure apache & make mysql tables
 temp="CREATE DATABASE $mysql_database_name;"

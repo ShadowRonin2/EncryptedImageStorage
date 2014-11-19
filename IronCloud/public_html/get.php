@@ -102,7 +102,7 @@ if( strcasecmp($_GET['method'],'fileList') == 0){
   /*
   * Returns a list of files the user has stored
   */
-  $directoy = realpath(getcwd()./"../private_html/uploads/" . $_POST['username']);
+  $directoy = realpath(getcwd()."/../private_html/uploads/" . $_POST['username']);
   if(!is_dir($directoy)) {
     if(!mkdir($directory)) {
       die("Failed to make the directory! This should never happen!");

@@ -85,8 +85,8 @@ if( strcasecmp($_GET['method'],'file') == 0){
   * Input: _Post['filename'] = ""
   * Returns a base64 encoded file or "Unknown file" if the file cant be found
   */
-  $directory = getcwd()."/../private_html/uploads/". $username;
-  $filename = $directoy."/".$_POST['filename'];
+  $directory = getcwd()."/../private_html/uploads/".$_POST['username'];
+  $filename = $directory."/".$_POST['filename'];
   if(!is_file($filename)) {
     $response['code'] = 0;
     $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];

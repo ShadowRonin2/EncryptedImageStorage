@@ -81,7 +81,7 @@ if( strcasecmp($_GET['method'],'file') == 0){
     * Deletes the file given by file name
     * Returns 'Success' | 'File does not exist' | 'The file could not be removed'
     */
-    $destination = realpath(getcwd()."../uploads/". $_POST['username'] . "/" . $_POST['filename']);
+    $destination = realpath(getcwd()./"../uploads/". $_POST['username'] . "/" . $_POST['filename']);
     if(!is_file($destination)) {
       $response['code'] = 0;
       $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];

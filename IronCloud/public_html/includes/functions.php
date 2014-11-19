@@ -76,7 +76,7 @@ function uploadFile($file, $overwrite, $username) {
   * $_FILE['file']
   *
   */
-  $directory = getcwd()."../private_html/uploads/". $username;
+  $directory = getcwd()."/../private_html/uploads/". $username;
   echo($directory);
   $destination= $directory ."/". $file["name"];
   

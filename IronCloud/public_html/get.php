@@ -85,12 +85,24 @@ if( strcasecmp($_GET['method'],'file') == 0){
   * Input: _Post['filename'] = ""
   * Returns a base64 encoded file or "Unknown file" if the file cant be found
   */
+  $directory = getcwd()."/../private_html/uploads/". $username;
+  $filename = $directoy."/".$_POST['filename'];
+  if(!is_file($$filename)) {
+    $response['code'] = 0;
+    $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+    $response['data'] = "File does not exist";
+  } else {
+    $file = file_get_contents($$filename);
+    $response['code'] = 1;
+    $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
+    $response['data'] = base64_encode($file);
+  }
 }
 if( strcasecmp($_GET['method'],'fileList') == 0){
   /*
   * Returns a list of files the user has stored
   */
-  $directoy = realpath(getcwd()."../private_html/uploads/" . $_POST['username']);
+  $directoy = realpath(getcwd()./"../private_html/uploads/" . $_POST['username']);
   if(!is_dir($directoy)) {
     if(!mkdir($directory)) {
       die("Failed to make the directory! This should never happen!");

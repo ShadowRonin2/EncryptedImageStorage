@@ -87,12 +87,12 @@ if( strcasecmp($_GET['method'],'file') == 0){
   */
   $directory = getcwd()."/../private_html/uploads/". $username;
   $filename = $directoy."/".$_POST['filename'];
-  if(!is_file($$filename)) {
+  if(!is_file($filename)) {
     $response['code'] = 0;
     $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
     $response['data'] = "File does not exist";
   } else {
-    $file = file_get_contents($$filename);
+    $file = file_get_contents($filename);
     $response['code'] = 1;
     $response['status'] = $api_response_code[ $response['code'] ]['HTTP Response'];
     $response['data'] = base64_encode($file);

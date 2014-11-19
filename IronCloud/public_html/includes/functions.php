@@ -1,7 +1,7 @@
 <?php
 //include_once includes/sha512.js;
-include_once 'includes/psl-config.php';
-include_once 'includes/db_connect.php';
+include_once 'psl-config.php';
+include_once 'db_connect.php';
 function deliver_response($format, $api_response){
 	/**
 	* Delivers the response to the client
@@ -76,7 +76,7 @@ function uploadFile($file, $overwrite, $username) {
   * $_FILE['file']
   *
   */
-  $directory = "/var/www/webhost/public_html/uploads/". $username;
+  $directory = getcwd()."../private_html/uploads/". $username;
   echo($directory);
   $destination= $directory ."/". $file["name"];
   
